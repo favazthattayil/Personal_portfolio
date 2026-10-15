@@ -642,3 +642,100 @@
 .resume-education-item { margin-bottom: 12px; }
 .resume-edu-degree { font-weight: 600; font-size: 0.9375rem; }
 .resume-edu-inst { font-size: 0.8125rem; color: var(--text-secondary); }
+
+@media (max-width: 600px) {
+  .mobile-drawer {
+    width: min(92%, 380px);
+    height: 100vh;
+    height: 100dvh;
+    padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .drawer-header {
+    margin-bottom: 18px;
+  }
+
+  .mobile-nav-list {
+    gap: 4px;
+  }
+
+  .mobile-nav-item {
+    min-height: 48px;
+    padding: 12px 14px;
+  }
+
+  .status-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 12px;
+  }
+
+  .status-item {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-content-container {
+    padding-top: 44px;
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-email-link {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .modal-backdrop {
+    padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+  }
+
+  .resume-modal-window {
+    width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-lg);
+  }
+
+  .resume-modal-topbar,
+  .modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .resume-modal-topbar {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .modal-actions {
+    justify-content: flex-end;
+  }
+
+  .resume-document-sheet {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-drawer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .status-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .back-to-top-btn {
+    justify-self: start;
+    min-height: 40px;
+  }
+}

@@ -542,6 +542,105 @@ code, pre, .font-mono { font-family: var(--font-mono); }
   display: inline-block;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .section-sm {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .page-header {
+    padding-top: calc(var(--header-height) + 40px);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+    overflow-wrap: anywhere;
+  }
+
+  .btn {
+    min-height: 44px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .btn-lg {
+    padding: 13px 22px;
+    font-size: 0.9rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid-2 > *,
+  .grid-3 > *,
+  .grid-4 > * {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .section-sm {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .page-header {
+    padding-top: calc(var(--header-height) + 32px);
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    margin-bottom: 14px;
+  }
+
+  .page-title {
+    font-size: clamp(1.85rem, 9vw, 2.5rem);
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .wb-card {
+    padding: 20px;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select,
+  .search-input {
+    font-size: 16px;
+  }
+}
+
 /* Print */
 @media print {
   body { background-color: #fff !important; color: #111 !important; }
