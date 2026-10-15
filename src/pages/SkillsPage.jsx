@@ -1,31 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SKILL_CATEGORIES } from '../data/skills';
-import {
-  Cpu,
-  Database,
-  Zap,
-  Layout,
-  GitBranch,
-  Smartphone,
-  Sparkles,
-  CheckCircle2,
-  Layers,
-  ArrowRight
-} from 'lucide-react';
+import { Cpu, Database, Zap, Layout, GitBranch, Smartphone, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function SkillsPage({ onOpenResume }) {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const filterTabs = [
-    { id: 'all', label: 'All Capabilities' },
+    { id: 'all', label: 'All' },
     { id: 'backend', label: 'Backend & APIs' },
-    { id: 'databases', label: 'Databases & Query Optimization' },
+    { id: 'databases', label: 'Databases' },
     { id: 'ai-integrations', label: 'AI & Integrations' },
     { id: 'frontend', label: 'Frontend' },
-    { id: 'infrastructure', label: 'Deployment & Tools' },
-    { id: 'mobile', label: 'Mobile (Ongoing)' },
-    { id: 'familiar', label: 'Familiar Technologies' },
+    { id: 'infrastructure', label: 'DevOps & Tools' },
+    { id: 'mobile', label: 'Mobile' },
+    { id: 'familiar', label: 'Familiar' },
   ];
 
   const displayedCategories =
@@ -35,38 +24,21 @@ export default function SkillsPage({ onOpenResume }) {
 
   const getCategoryIcon = (id) => {
     switch (id) {
-      case 'backend':
-        return <Cpu size={20} className="text-accent" />;
-      case 'databases':
-        return <Database size={20} className="text-accent" />;
-      case 'ai-integrations':
-        return <Zap size={20} className="text-accent" />;
-      case 'frontend':
-        return <Layout size={20} className="text-accent" />;
-      case 'infrastructure':
-        return <GitBranch size={20} className="text-accent" />;
-      case 'mobile':
-        return <Smartphone size={20} className="text-accent" />;
-      default:
-        return <Sparkles size={20} className="text-accent" />;
+      case 'backend': return <Cpu size={20} />;
+      case 'databases': return <Database size={20} />;
+      case 'ai-integrations': return <Zap size={20} />;
+      case 'frontend': return <Layout size={20} />;
+      case 'infrastructure': return <GitBranch size={20} />;
+      case 'mobile': return <Smartphone size={20} />;
+      default: return <Sparkles size={20} />;
     }
   };
 
-  const getLevelBadgeClass = (level) => {
-    switch (level) {
-      case 'Production Core':
-        return 'badge-accent';
-      case 'Production Integration':
-      case 'Production Experience':
-      case 'Production Operations':
-        return 'badge-outline';
-      case 'Key Achievement':
-        return 'badge-award';
-      case 'Active Development':
-        return 'badge-warning';
-      default:
-        return 'badge-outline';
-    }
+  const getLevelBadge = (level) => {
+    if (level === 'Production Core') return 'badge-accent';
+    if (level === 'Key Achievement') return 'badge-green';
+    if (level === 'Active Development') return 'badge-pink';
+    return 'badge-outline';
   };
 
   return (
@@ -74,28 +46,27 @@ export default function SkillsPage({ onOpenResume }) {
       {/* Header */}
       <section className="page-header">
         <div className="container">
-          <span className="eyebrow font-mono">[CAPABILITY MATRIX // TECHNICAL WORKBENCH]</span>
+          <span className="eyebrow">Capability Matrix</span>
           <h1 className="page-title">
-            Engineering Capabilities & <br />
-            <span className="text-accent">Technology Specialization</span>
+            Engineering Capabilities &{' '}
+            <span className="text-gradient">Technology Stack</span>
           </h1>
           <p className="page-subtitle">
-            A comprehensive mapping of backend services, database tuning, conversational AI, deployment operations, and exploratory tooling.
+            A comprehensive mapping of backend services, database tuning, conversational AI,
+            deployment operations, and exploratory tooling.
           </p>
         </div>
       </section>
 
       {/* Filter Tabs */}
-      <section className="skills-filter-section">
+      <section style={{ padding: '0 0 8px 0' }}>
         <div className="container">
-          <div className="skills-tabs-bar wb-card" role="tablist" aria-label="Skills Category Filter">
+          <div className="skills-category-nav">
             {filterTabs.map((tab) => (
               <button
                 key={tab.id}
-                role="tab"
-                aria-selected={activeFilter === tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`skill-tab-btn font-mono ${activeFilter === tab.id ? 'tab-active' : ''}`}
+                className={`skills-cat-btn ${activeFilter === tab.id ? 'cat-active' : ''}`}
               >
                 {tab.label}
               </button>
@@ -104,37 +75,37 @@ export default function SkillsPage({ onOpenResume }) {
         </div>
       </section>
 
-      {/* Skills Capability Map */}
-      <section className="section-sm skills-content-section">
+      {/* Skills Categories */}
+      <section className="section-sm">
         <div className="container">
-          <div className="capability-categories-stack">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
             {displayedCategories.map((cat) => (
-              <div key={cat.id} className="capability-category-block wb-card">
+              <div key={cat.id} className="wb-card">
                 {/* Category Header */}
-                <div className="cat-block-header">
-                  <div className="cat-header-left">
-                    <div className="cat-icon-wrap">{getCategoryIcon(cat.id)}</div>
+                <div className="skills-cat-header">
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+                    <div className="cap-icon-box" style={{ flexShrink: 0 }}>
+                      {getCategoryIcon(cat.id)}
+                    </div>
                     <div>
-                      <h2 className="cat-title">{cat.title}</h2>
-                      <p className="cat-desc">{cat.description}</p>
+                      <h2 className="skills-cat-title">{cat.title}</h2>
+                      <p className="skills-cat-desc">{cat.description}</p>
                     </div>
                   </div>
-                  <div className="cat-header-right">
-                    <span className="badge badge-accent font-mono">{cat.tag}</span>
-                  </div>
+                  <span className="badge badge-accent">{cat.tag}</span>
                 </div>
 
                 {/* Skills Grid */}
                 <div className="skills-items-grid">
                   {cat.skills.map((skill) => (
-                    <div key={skill.name} className="skill-item-card">
-                      <div className="skill-item-top font-mono">
+                    <div key={skill.name} className="skill-item-card wb-card">
+                      <div className="skill-item-top">
                         <span className="skill-name">{skill.name}</span>
-                        <span className={`badge ${getLevelBadgeClass(skill.level)}`}>
+                        <span className={`badge ${getLevelBadge(skill.level)} skill-level-badge`}>
                           {skill.level}
                         </span>
                       </div>
-                      <p className="skill-item-detail">{skill.description}</p>
+                      <p className="skill-desc">{skill.description}</p>
                     </div>
                   ))}
                 </div>
@@ -144,35 +115,43 @@ export default function SkillsPage({ onOpenResume }) {
         </div>
       </section>
 
-      {/* Summary Note */}
+      {/* Integrity Note */}
       <section className="section-sm">
         <div className="container">
-          <div className="skills-summary-banner wb-card font-mono">
-            <div className="banner-top">
+          <div className="wb-card" style={{ padding: '24px 28px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <span className="status-dot"></span>
-              <span>ENGINEERING INTEGRITY NOTE</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)' }}>
+                Engineering Integrity Note
+              </span>
             </div>
-            <p className="banner-text">
-              Skill classifications reflect actual production engineering responsibilities at Axel Technologies and Workpex client assignments. Generic percentages and arbitrary proficiency progress bars are omitted in favor of concrete implementation experience.
+            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
+              Skill classifications reflect actual production engineering responsibilities. Generic
+              percentage bars and arbitrary proficiency scores are omitted in favor of concrete
+              implementation experience at Axel Technologies and Workpex.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* CTA */}
       <section className="section-sm">
         <div className="container">
           <div className="cta-banner wb-card">
-            <h2 className="cta-heading">Ready to discuss these technical capabilities?</h2>
+            <h2 className="cta-heading">
+              Ready to discuss{' '}
+              <span className="text-gradient">these capabilities?</span>
+            </h2>
             <p className="cta-text">
-              Let's connect to discuss how these backend and automation skills apply to your technical requirements.
+              Let's connect to discuss how these backend and automation skills apply to your
+              technical requirements.
             </p>
             <div className="cta-buttons">
-              <Link to="/contact" className="btn btn-primary">
+              <Link to="/contact" className="btn btn-primary btn-lg">
                 <span>Start a Conversation</span>
                 <ArrowRight size={15} />
               </Link>
-              <button onClick={onOpenResume} className="btn btn-secondary">
+              <button onClick={onOpenResume} className="btn btn-secondary btn-lg">
                 <span>Download Resume</span>
               </button>
             </div>

@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Menu, X, FileText, Terminal, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, FileText, Zap, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ onOpenResume }) {
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
+  useEffect(() => { setMobileMenuOpen(false); }, [location.pathname]);
 
-  // Handle ESC key for mobile drawer
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
+      if (e.key === 'Escape' && mobileMenuOpen) setMobileMenuOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -44,18 +34,15 @@ export default function Navbar({ onOpenResume }) {
 
   return (
     <>
-      <header
-        className={`main-header ${scrolled ? 'header-scrolled' : ''}`}
-        role="banner"
-      >
+      <header className={`main-header ${scrolled ? 'header-scrolled' : ''}`} role="banner">
         <div className="container header-container">
           <Link to="/" className="brand-logo" aria-label="Favas T Portfolio Home">
             <div className="brand-icon">
-              <Terminal size={18} className="brand-terminal-icon" />
+              <Zap size={16} strokeWidth={2.5} />
             </div>
             <div className="brand-text">
-              <span className="brand-name">FAVAS T</span>
-              <span className="brand-spec">/ BACKEND & AI</span>
+              <span className="brand-name">Favas T</span>
+              <span className="brand-spec">Backend & AI Engineer</span>
             </div>
           </Link>
 
@@ -67,9 +54,7 @@ export default function Navbar({ onOpenResume }) {
                   <NavLink
                     to={link.to}
                     end={link.to === '/'}
-                    className={({ isActive }) =>
-                      `nav-link ${isActive ? 'nav-link-active' : ''}`
-                    }
+                    className={({ isActive }) => `nav-link ${isActive ? 'nav-link-active' : ''}`}
                   >
                     {link.label}
                   </NavLink>
@@ -78,34 +63,24 @@ export default function Navbar({ onOpenResume }) {
             </ul>
           </nav>
 
-          {/* Header Action Buttons */}
+          {/* Actions */}
           <div className="header-actions">
             <button
               onClick={onOpenResume}
-              className="btn btn-secondary btn-sm resume-btn"
+              className="btn btn-primary btn-sm resume-btn"
               aria-label="View and Download Resume"
             >
-              <FileText size={15} />
+              <FileText size={14} />
               <span>Resume</span>
             </button>
 
-            <button
-              onClick={toggleTheme}
-              className="theme-toggle-btn"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-
-            {/* Mobile Menu Trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="mobile-menu-trigger"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -125,9 +100,9 @@ export default function Navbar({ onOpenResume }) {
           aria-label="Mobile Navigation"
         >
           <div className="drawer-header">
-            <div className="drawer-title font-mono">
+            <div className="drawer-title">
               <span className="status-dot"></span>
-              <span>NAVIGATION MENU</span>
+              <span>Navigation</span>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -145,30 +120,23 @@ export default function Navbar({ onOpenResume }) {
                 to={link.to}
                 end={link.to === '/'}
                 onClick={() => setMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `mobile-nav-item ${isActive ? 'mobile-nav-active' : ''}`
-                }
+                className={({ isActive }) => `mobile-nav-item ${isActive ? 'mobile-nav-active' : ''}`}
               >
                 <span>{link.label}</span>
-                <ArrowUpRight size={16} className="mobile-nav-arrow" />
+                <ArrowUpRight size={15} className="mobile-nav-arrow" />
               </NavLink>
             ))}
           </nav>
 
           <div className="drawer-footer">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenResume();
-              }}
+              onClick={() => { setMobileMenuOpen(false); onOpenResume(); }}
               className="btn btn-primary btn-sm w-full"
             >
-              <FileText size={16} />
-              <span>Download / View Resume</span>
+              <FileText size={15} />
+              <span>View / Download Resume</span>
             </button>
-            <div className="drawer-meta font-mono">
-              <span>FAVAS T · MALAPPURAM, KERALA</span>
-            </div>
+            <div className="drawer-meta">Favas T · Malappuram, Kerala · Backend & AI Engineer</div>
           </div>
         </div>
       </div>

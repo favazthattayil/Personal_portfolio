@@ -1,53 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AlertTriangle, ArrowRight, Home, Layers, Terminal } from 'lucide-react';
+import { ArrowLeft, Home } from 'lucide-react';
 
 export default function NotFoundPage() {
   return (
     <div className="not-found-page">
-      <div className="container">
-        <div className="not-found-workbench wb-card">
-          <div className="workbench-top font-mono">
-            <span className="status-dot"></span>
-            <span>DIAGNOSTIC EXCEPTION // HTTP 404</span>
-          </div>
+      {/* Glow orbs */}
+      <div style={{
+        position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)',
+        width: '500px', height: '300px', borderRadius: '50%',
+        background: 'radial-gradient(ellipse, rgba(124,111,255,0.08) 0%, transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none'
+      }} />
 
-          <div className="error-code font-mono text-accent">404</div>
-
-          <h1 className="error-title">Route Endpoint Not Found</h1>
-
-          <p className="error-desc">
-            The requested URI does not match any registered route in the portfolio routing table.
-            The system remains operational.
-          </p>
-
-          <div className="error-telemetry font-mono">
-            <div className="diag-line">
-              <span className="text-muted">ROUTER_STATUS:</span> 404_NO_MATCH
-            </div>
-            <div className="diag-line">
-              <span className="text-muted">LOCATION:</span> {window.location.pathname}
-            </div>
-            <div className="diag-line">
-              <span className="text-muted">RECOVERY_ACTION:</span> DISPATCH_TO_KNOWN_ENDPOINT
-            </div>
-          </div>
-
-          <div className="recovery-actions">
-            <Link to="/" className="btn btn-primary">
-              <Home size={15} />
-              <span>Return to Home</span>
-            </Link>
-            <Link to="/work" className="btn btn-secondary">
-              <Layers size={15} />
-              <span>Explore Projects</span>
-            </Link>
-            <Link to="/contact" className="btn btn-ghost font-mono">
-              <span>Report Issue</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
+      <div className="not-found-code">404</div>
+      <h1 className="not-found-title">Page Not Found</h1>
+      <p className="not-found-desc">
+        This endpoint doesn't exist in the system. The route you requested may have been
+        moved, removed, or never existed.
+      </p>
+      <div className="not-found-actions">
+        <Link to="/" className="btn btn-primary btn-lg">
+          <Home size={16} />
+          <span>Back to Home</span>
+        </Link>
+        <Link to="/work" className="btn btn-secondary btn-lg">
+          <span>View My Work</span>
+        </Link>
       </div>
     </div>
   );

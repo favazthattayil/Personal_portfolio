@@ -12,18 +12,12 @@ import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
-// Scroll restoration component
+// Scroll restoration on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant', // instant scroll to top on route change
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
-
   return null;
 }
 
@@ -36,11 +30,9 @@ export default function App() {
   return (
     <div className="app-layout">
       <ScrollToTop />
-      
-      {/* Persistent Navigation */}
+
       <Navbar onOpenResume={handleOpenResume} />
 
-      {/* Main Content Area */}
       <main id="main-content" className="main-content-flow" role="main">
         <Routes>
           <Route path="/" element={<HomePage onOpenResume={handleOpenResume} />} />
@@ -54,10 +46,8 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* Persistent Footer */}
       <Footer onOpenResume={handleOpenResume} />
 
-      {/* Global Resume Modal */}
       <ResumeModal isOpen={resumeOpen} onClose={handleCloseResume} />
     </div>
   );
