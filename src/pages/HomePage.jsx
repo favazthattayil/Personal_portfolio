@@ -4,9 +4,10 @@ import { PROJECTS } from '../data/projects';
 import { TIMELINE_EXPERIENCE, CAREER_STATS } from '../data/experience';
 import ProjectCard from '../components/ProjectCard';
 import SystemVisual from '../components/SystemVisual';
+import ResumeLink from '../components/ResumeLink';
 import { ArrowRight, ArrowUpRight, Cpu, Database, Zap, GitBranch, FileText, Star, Award } from 'lucide-react';
 
-export default function HomePage({ onOpenResume }) {
+export default function HomePage() {
   const featuredProjects = PROJECTS.filter((p) => p.featured);
 
   const capabilities = [
@@ -92,10 +93,10 @@ export default function HomePage({ onOpenResume }) {
                 <Link to="/contact" className="btn btn-secondary btn-lg">
                   <span>Get in Touch</span>
                 </Link>
-                <button onClick={onOpenResume} className="btn btn-ghost btn-lg">
+                <ResumeLink className="btn btn-ghost btn-lg">
                   <FileText size={16} />
                   <span>Resume</span>
-                </button>
+                </ResumeLink>
               </div>
 
               <div className="hero-telemetry">
@@ -277,10 +278,10 @@ export default function HomePage({ onOpenResume }) {
                 <span>Start a Conversation</span>
                 <ArrowRight size={16} />
               </Link>
-              <button onClick={onOpenResume} className="btn btn-secondary btn-lg">
+              <ResumeLink className="btn btn-secondary btn-lg">
                 <FileText size={16} />
                 <span>Download Resume</span>
-              </button>
+              </ResumeLink>
             </div>
           </div>
         </div>

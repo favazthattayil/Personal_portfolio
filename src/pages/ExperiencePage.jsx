@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TIMELINE_EXPERIENCE, EDUCATION, CAREER_STATS } from '../data/experience';
 import { CheckCircle2, ArrowRight, FileText, Award } from 'lucide-react';
+import ResumeLink from '../components/ResumeLink';
 
-export default function ExperiencePage({ onOpenResume }) {
+export default function ExperiencePage() {
   return (
     <div className="experience-page">
       {/* Header */}
@@ -133,10 +134,10 @@ export default function ExperiencePage({ onOpenResume }) {
             </h2>
             <p className="cta-text">View the verified resume or get in touch directly.</p>
             <div className="cta-buttons">
-              <button onClick={onOpenResume} className="btn btn-primary btn-lg">
+              <ResumeLink className="btn btn-primary btn-lg">
                 <FileText size={16} />
                 <span>View / Download Resume</span>
-              </button>
+              </ResumeLink>
               <Link to="/contact" className="btn btn-secondary btn-lg">
                 <span>Contact Favas</span>
                 <ArrowRight size={15} />

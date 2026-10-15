@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Menu, X, FileText, Zap, ArrowUpRight } from 'lucide-react';
+import ResumeLink from './ResumeLink';
 
-export default function Navbar({ onOpenResume }) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -65,14 +66,13 @@ export default function Navbar({ onOpenResume }) {
 
           {/* Actions */}
           <div className="header-actions">
-            <button
-              onClick={onOpenResume}
+            <ResumeLink
               className="btn btn-primary btn-sm resume-btn"
               aria-label="View and Download Resume"
             >
               <FileText size={14} />
               <span>Resume</span>
-            </button>
+            </ResumeLink>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -129,13 +129,13 @@ export default function Navbar({ onOpenResume }) {
           </nav>
 
           <div className="drawer-footer">
-            <button
-              onClick={() => { setMobileMenuOpen(false); onOpenResume(); }}
+            <ResumeLink
+              onClick={() => setMobileMenuOpen(false)}
               className="btn btn-primary btn-sm w-full"
             >
               <FileText size={15} />
               <span>View / Download Resume</span>
-            </button>
+            </ResumeLink>
             <div className="drawer-meta">Favas T · Malappuram, Kerala · Backend & AI Engineer</div>
           </div>
         </div>

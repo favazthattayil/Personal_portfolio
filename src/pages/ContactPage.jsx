@@ -4,8 +4,9 @@ import {
   AlertCircle, CheckCircle2, FileText
 } from 'lucide-react';
 import { Github, Linkedin } from '../components/Icons';
+import ResumeLink from '../components/ResumeLink';
 
-export default function ContactPage({ onOpenResume }) {
+export default function ContactPage() {
   const emailAddress = 'favast2000@gmail.com';
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', _gotcha: '' });
@@ -125,10 +126,10 @@ export default function ContactPage({ onOpenResume }) {
                   <button onClick={handleCopyEmail} className="btn btn-secondary" style={{ flex: 1 }}>
                     {copied ? <><Check size={14} /><span style={{ color: 'var(--accent-2)' }}>Copied!</span></> : <><Copy size={14} /><span>Copy Email</span></>}
                   </button>
-                  <button onClick={onOpenResume} className="btn btn-primary" style={{ flex: 1 }}>
+                  <ResumeLink className="btn btn-primary" style={{ flex: 1 }}>
                     <FileText size={14} />
                     <span>Resume</span>
-                  </button>
+                  </ResumeLink>
                 </div>
               </div>
 

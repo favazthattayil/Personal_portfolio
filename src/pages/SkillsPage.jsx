@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SKILL_CATEGORIES } from '../data/skills';
 import { Cpu, Database, Zap, Layout, GitBranch, Smartphone, Sparkles, ArrowRight } from 'lucide-react';
+import ResumeLink from '../components/ResumeLink';
 
-export default function SkillsPage({ onOpenResume }) {
+export default function SkillsPage() {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const filterTabs = [
@@ -151,9 +152,9 @@ export default function SkillsPage({ onOpenResume }) {
                 <span>Start a Conversation</span>
                 <ArrowRight size={15} />
               </Link>
-              <button onClick={onOpenResume} className="btn btn-secondary btn-lg">
+              <ResumeLink className="btn btn-secondary btn-lg">
                 <span>Download Resume</span>
-              </button>
+              </ResumeLink>
             </div>
           </div>
         </div>

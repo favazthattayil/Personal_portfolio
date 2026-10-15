@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Copy, Check, Terminal, ExternalLink, ArrowUp } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
+import ResumeLink from './ResumeLink';
 
-export default function Footer({ onOpenResume }) {
+export default function Footer() {
   const [copied, setCopied] = useState(false);
   const emailAddress = 'favast2000@gmail.com';
 
@@ -78,9 +79,9 @@ export default function Footer({ onOpenResume }) {
               <li><Link to="/skills">Skills & Capabilities</Link></li>
               <li><Link to="/contact">Get in Touch</Link></li>
               <li>
-                <button onClick={onOpenResume} className="footer-link-btn">
+                <ResumeLink className="footer-link-btn">
                   Download Resume
-                </button>
+                </ResumeLink>
               </li>
             </ul>
           </div>

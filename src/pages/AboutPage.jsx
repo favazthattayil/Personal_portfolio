@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { EDUCATION } from '../data/experience';
 import { Mail, FileText, ArrowRight } from 'lucide-react';
 import { Github, Linkedin } from '../components/Icons';
+import ResumeLink from '../components/ResumeLink';
 
-export default function AboutPage({ onOpenResume }) {
+export default function AboutPage() {
   const principles = [
     {
       number: '01',
@@ -129,10 +130,10 @@ export default function AboutPage({ onOpenResume }) {
                 </div>
 
                 <div className="profile-actions">
-                  <button onClick={onOpenResume} className="btn btn-primary w-full">
+                  <ResumeLink className="btn btn-primary w-full">
                     <FileText size={15} />
                     <span>View / Download Resume</span>
-                  </button>
+                  </ResumeLink>
 
                   <a href="mailto:favast2000@gmail.com" className="btn btn-secondary w-full">
                     <Mail size={15} />

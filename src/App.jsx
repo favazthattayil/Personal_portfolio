@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ResumeModal from './components/ResumeModal';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import WorkPage from './pages/WorkPage';
@@ -22,33 +21,26 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [resumeOpen, setResumeOpen] = useState(false);
-
-  const handleOpenResume = () => setResumeOpen(true);
-  const handleCloseResume = () => setResumeOpen(false);
-
   return (
     <div className="app-layout">
       <ScrollToTop />
 
-      <Navbar onOpenResume={handleOpenResume} />
+      <Navbar />
 
       <main id="main-content" className="main-content-flow" role="main">
         <Routes>
-          <Route path="/" element={<HomePage onOpenResume={handleOpenResume} />} />
-          <Route path="/about" element={<AboutPage onOpenResume={handleOpenResume} />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/work/:slug" element={<CaseStudyPage />} />
-          <Route path="/experience" element={<ExperiencePage onOpenResume={handleOpenResume} />} />
-          <Route path="/skills" element={<SkillsPage onOpenResume={handleOpenResume} />} />
-          <Route path="/contact" element={<ContactPage onOpenResume={handleOpenResume} />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 
-      <Footer onOpenResume={handleOpenResume} />
-
-      <ResumeModal isOpen={resumeOpen} onClose={handleCloseResume} />
+      <Footer />
     </div>
   );
 }
