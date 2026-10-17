@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RESUME_PDF_URL = '/Resume/Favas_T_Resume%20(2).pdf';
+const RESUME_PDF_URL = '/Resume/Favas_T_Resume%20(3).pdf';
 
 export default function ResumeLink({ children, ...props }) {
   return (
